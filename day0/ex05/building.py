@@ -2,13 +2,30 @@ import sys
 
 
 def string_stats(string: str):
-    """
-    Print the stats of the string.
+    upper: int = 0
+    lower: int = 0
+    punctuation: int = 0
+    digit: int = 0
+    spaces: int = 0
 
-    Args:
-        string (str): The string to count.
-    """
+    for c in string:
+        if c.isupper():
+            upper += 1
+        elif c.islower():
+            lower += 1
+        elif c.isdigit():
+            digit += 1
+        elif c.isspace():
+            spaces += 1
+        else:
+            punctuation += 1
+
     print(f"The text contains {len(string)} characters:")
+    print(f"{upper} upper letters")
+    print(f"{lower} lower letters")
+    print(f"{punctuation} punctuation marks")
+    print(f"{spaces} spaces")
+    print(f"{digit} digits")
 
 
 def manage_input():
@@ -31,7 +48,7 @@ def main(argv):
     """
     if len(argv) > 2:
         raise AssertionError("more than one argument is provided")
-    if len(argv) == 2:
+    if len(argv) == 2 and argv[1] is not None:
         string_stats(argv[1])
     else:
         manage_input()
